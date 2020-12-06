@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: votingadminservicerepos
-        image: samplecr.azurecr.io/votingadminservicerepos:latest
+        image: votingcr.azurecr.io/votingadminservicerepos:latest
         ports:
         - containerPort: 8080
       imagePullSecrets:
