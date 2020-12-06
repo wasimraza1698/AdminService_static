@@ -1,0 +1,33 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: votingadminservice-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: VotingAdminService
+  template:
+    metadata:
+      labels:
+        app: VotingAdminService
+    spec:
+      containers:
+      - name: votingadminservicerepos
+        image: samplecr.azurecr.io/votingadminservicerepos:latest
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: vassecret
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: votingadminservice
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: VotingAdminService
